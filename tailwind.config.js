@@ -6,6 +6,9 @@ export default {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
+    letterSpacing: {
+      "-tight": "-0.03em",
+    },
     extend: {
       colors: {
         black: "#444444",
