@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  p,
+  h1,
+  h2,
+  h3,
+  span,
+  div {
+    letter-spacing: -0.02em;
+  }
+}
+
 .card {
   @apply rounded-[15px] bg-white p-10;
+}
+
+.cardSize {
+  @apply h-[70vh] w-[55vw];
 }
 
 .menu {
@@ -20,12 +35,4 @@
 
 .description {
   @apply ml-2 text-sm font-thin;
-}
-
-.button {
-  @apply rounded-[8px] bg-primary text-sm text-white;
-}
-
-.textfield {
-  @apply w-full rounded-md border-[0.5px] border-secondary p-2 text-sm;
 }

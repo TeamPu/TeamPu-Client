@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import CalendarNavButton from "../components/CalendarNavButton";
-import HomeCalendar from "../components/HomeCalendar";
-import { useCalendarDate } from "../components/useCalendarDate";
+import { CalendarNavButton, HomeCalendar } from "../components/";
+import { useCalendarDate } from "../hooks/";
 
 export default function HomePage() {
   const {
