@@ -1,7 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, MyReservationPage, MyPage, RulesPage } from "./pages";
+import {
+  HomePage,
+  MyReservationPage,
+  MyPage,
+  RulesPage,
+  FormPage,
+} from "./pages";
 import AppFrame from "./layouts/AppFrame.jsx";
 
 const router = createBrowserRouter([
@@ -15,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/rules", element: <RulesPage /> },
     ],
   },
+  { path: "/form", element: <FormPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
