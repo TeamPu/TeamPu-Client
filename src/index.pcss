@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  p,
+  h1,
+  h2,
+  h3,
+  span,
+  div {
+    letter-spacing: -0.02em;
+  }
+}
+
 .card {
   @apply rounded-[15px] bg-white p-10;
+}
+
+.cardSize {
+  @apply h-[70vh] w-[55vw];
 }
 
 .menu {
