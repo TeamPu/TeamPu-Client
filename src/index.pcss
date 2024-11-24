@@ -4,9 +4,6 @@
 
 @layer base {
   p,
-  h1,
-  h2,
-  h3,
   span,
   div {
     letter-spacing: -0.02em;
@@ -35,4 +32,16 @@
 
 .description {
   @apply ml-2 text-sm font-thin;
+}
+
+.shared-border {
+  @apply rounded-lg border border-secondary/50;
+}
+
+.label {
+  @apply text-lg font-semibold;
+}
+
+.input {
+  @apply w-full px-3 py-2 transition duration-300 ease-in-out focus:border-primary focus:outline-none active:border-primary;
 }
