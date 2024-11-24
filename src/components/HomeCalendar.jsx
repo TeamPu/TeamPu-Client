@@ -3,20 +3,18 @@ import Calendar from "react-calendar";
 import "./HomeCalendar.css";
 import moment from "moment";
 
-export default function HomeCalendar() {
+export default function HomeCalendar({ firstDay, lastDay }) {
   const [value, onChange] = useState(new Date());
-  const today = new Date();
-  const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
   return (
     <div>
       <Calendar
         onChange={onChange}
         value={value}
-        minDate={firstDayOfMonth}
-        maxDate={lastDayOfMonth}
+        minDate={firstDay}
+        maxDate={lastDay}
         formatDay={(locale, date) => moment(date).format("DD")}
+        showDoubleView={false}
       />
     </div>
   );
