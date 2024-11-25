@@ -1,24 +1,31 @@
-import { Link } from "react-router-dom";
-import Logo from "../assets/TeamPuLogo.png";
+import { Link, NavLink } from "react-router-dom";
 export default function SideNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
   const menus = ["홈", "내 예약", "내 정보 관리", "이용수칙"];
   return (
-    <div className="h-full w-[300px] bg-white px-10 py-14">
+    <div className="flex h-full w-[300px] flex-col justify-between bg-white px-10 py-14">
       <div>
-        <div className="mb-20 h-fit w-full">
-          <img src={Logo} />
-        </div>
-        <div className="flex flex-col gap-5">
+        <p className="epilogue mb-12 h-fit w-full text-center text-4xl font-extrabold">
+          <span className="text-primary">Team</span>Pu
+        </p>
+        <div className="menu flex flex-col gap-5">
           {links.map((link, i) => {
             return (
-              <Link key={i} to={link} className="menu">
+              <NavLink
+                key={i}
+                to={link}
+                className={({ isActive }) =>
+                  isActive ? "text-primary" : "text-black"
+                }
+              >
                 {menus[i]}
-              </Link>
+              </NavLink>
             );
           })}
         </div>
       </div>
+      <Link to="/login">로그인</Link>
+      {/* 차후 로그인 되어있으면 로그아웃, 로그인 되어있지 않으면 로그인으로 conditional rendering */}
     </div>
   );
 }
