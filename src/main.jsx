@@ -8,6 +8,7 @@ import {
   RulesPage,
   FormPage,
   LoginPage,
+  FormSubmitPage,
 } from "./pages";
 import AppFrame from "./layouts/AppFrame.jsx";
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   },
   { path: "/form", element: <FormPage /> },
   { path: "/login", element: <LoginPage /> },
+  { path: "/complete", element: <FormSubmitPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

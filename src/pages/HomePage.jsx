@@ -12,6 +12,8 @@ export default function HomePage() {
     isNextDisabled,
     currentMonth,
     currentYear,
+    value,
+    onChange,
   } = useCalendarDate();
 
   const calendarProps = {
@@ -23,6 +25,8 @@ export default function HomePage() {
     isNextDisabled,
     currentMonth,
     currentYear,
+    value,
+    onChange,
   };
 
   return (

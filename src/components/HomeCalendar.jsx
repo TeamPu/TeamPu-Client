@@ -1,11 +1,8 @@
-import { useState } from "react";
 import Calendar from "react-calendar";
 import "./HomeCalendar.css";
 import moment from "moment";
 
-export default function HomeCalendar({ firstDay, lastDay }) {
-  const [value, onChange] = useState(new Date());
-
+export default function HomeCalendar({ firstDay, lastDay, value, onChange }) {
   return (
     <div>
       <Calendar
