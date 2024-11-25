@@ -8,6 +8,7 @@ export const useCalendarDate = () => {
   const [lastDay, setLastDay] = useState(lastDayOfMonth);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth() + 1);
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [value, onChange] = useState(new Date());
 
   const handlePrevMonth = () => {
     const newMonth = currentMonth === 1 ? 12 : currentMonth - 1;
@@ -41,5 +42,7 @@ export const useCalendarDate = () => {
     isNextDisabled,
     currentMonth,
     currentYear,
+    value,
+    onChange,
   };
 };
