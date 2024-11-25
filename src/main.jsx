@@ -7,6 +7,7 @@ import {
   MyPage,
   RulesPage,
   FormPage,
+  LoginPage,
 } from "./pages";
 import AppFrame from "./layouts/AppFrame.jsx";
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/form", element: <FormPage /> },
+  { path: "/login", element: <LoginPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
