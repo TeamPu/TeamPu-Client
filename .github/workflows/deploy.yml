@@ -1,0 +1,21 @@
+name: Sync and merge upstream repository
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *"
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge upstream
+        run: |
+          git config --global user.name 'cho4u4o'
+          git config --global user.email 'cho4u4o@gmail.com'
+          git pull --unshallow  
+          git remote add upstream https://github.com/TeamPu/TeamPu-Client.git
+          git fetch upstream
+          git checkout develop
+          git merge -Xtheirs upstream/develop
+          git push origin develop
