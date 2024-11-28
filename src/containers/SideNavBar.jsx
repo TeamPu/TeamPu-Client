@@ -24,7 +24,9 @@ export default function SideNavBar() {
           })}
         </div>
       </div>
-      <Link to="/login">로그인</Link>
+      <Link to="/login" className="hover:text-primary">
+        로그인
+      </Link>
       {/* 차후 로그인 되어있으면 로그아웃, 로그인 되어있지 않으면 로그인으로 conditional rendering */}
     </div>
   );

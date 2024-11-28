@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FormInput from "./FormInput";
 
 export default function LoginForm() {
@@ -24,9 +25,11 @@ export default function LoginForm() {
         </div>
         <button className="button rounded-[8px] p-3">로그인</button>
       </div>
-      <div className="flex justify-center pt-2.5 text-secondary-dark underline">
-        <span className="mr-2.5">비밀번호를 잃어버렸어요!</span>
-        <span>회원가입</span>
+      <div className="flex justify-start pt-2.5 text-secondary-dark underline">
+        <Link to="/join" className="mr-2.5">
+          회원가입
+        </Link>
+        <span>비밀번호를 잃어버렸어요!</span>
       </div>
     </>
   );
