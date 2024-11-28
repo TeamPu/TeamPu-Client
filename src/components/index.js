@@ -5,3 +5,4 @@ export { default as ReservationView } from "./ReservationView";
 export { default as MyPageForm } from "./MyPageForm";
 export { default as ReservationForm } from "./ReservationForm";
 export { default as LoginForm } from "./LoginForm";
+export { default as JoinForm } from "./JoinForm";
