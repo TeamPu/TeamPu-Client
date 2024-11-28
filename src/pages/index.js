@@ -6,3 +6,4 @@ export { default as FormPage } from "./FormPage";
 export { default as FormSubmitPage } from "./FormSubmitPage";
 export { default as LoginPage } from "./LoginPage";
 export { default as JoinPage } from "./JoinPage";
+export { default as AdminPage } from "./AdminPage";

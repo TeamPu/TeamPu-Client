@@ -10,6 +10,7 @@ import {
   LoginPage,
   FormSubmitPage,
   JoinPage,
+  AdminPage,
 } from "./pages";
 import AppFrame from "./layouts/AppFrame.jsx";
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
   { path: "/join", element: <JoinPage /> },
   { path: "/complete", element: <FormSubmitPage /> },
+  { path: "/admin", element: <AdminPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

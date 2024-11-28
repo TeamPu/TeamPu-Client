@@ -53,5 +53,13 @@
 }
 
 .button {
-  @apply hover:bg-primary-dark grid place-items-center bg-primary text-white;
+  @apply grid place-items-center bg-primary text-white hover:bg-primary-dark;
+}
+
+.res-positive-button {
+  @apply rounded-[4px] p-1 text-[12px] font-semibold text-white;
+}
+
+.res-negative-button {
+  @apply grid place-items-center rounded-[4px] border border-secondary/50 bg-white p-1 text-[12px] font-semibold hover:bg-[#d10000] hover:text-white;
 }
