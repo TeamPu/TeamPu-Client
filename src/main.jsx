@@ -12,7 +12,7 @@ import {
   JoinPage,
   AdminPage,
 } from "./pages";
-import AppFrame from "./layouts/AppFrame.jsx";
+import { AppFrame, PrivateRouter } from "./layouts";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,10 @@ const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
   { path: "/join", element: <JoinPage /> },
   { path: "/complete", element: <FormSubmitPage /> },
-  { path: "/admin", element: <AdminPage /> },
+  {
+    element: <PrivateRouter />,
+    children: [{ path: "/admin", element: <AdminPage /> }],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
