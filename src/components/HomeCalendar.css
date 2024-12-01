@@ -101,7 +101,9 @@ abbr {
 
 .react-calendar__tile {
   width: 7vw;
-  height: 10vh;
+  height: 8vw;
+  min-height: 7vh;
+  max-height: 10vh;
   padding: 10px;
   display: flex;
   text-align: start;
