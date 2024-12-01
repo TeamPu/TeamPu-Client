@@ -48,7 +48,7 @@ export default function FormPage() {
           <ReservationForm date={value} />
         </div>
         <Link
-          className="button rounded-[15px] p-5 text-2xl font-semibold"
+          className="button mb-4 rounded-[15px] p-5 text-2xl font-semibold md:mb-0"
           to="/complete"
         >
           <p>신청하기</p>
