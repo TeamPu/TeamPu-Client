@@ -3,7 +3,9 @@ export default function SideNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
   const menus = ["홈", "내 예약", "내 정보 관리", "이용수칙"];
   return (
-    <div className="flex h-full w-[300px] flex-col justify-between bg-white px-10 py-14">
+    <div
+      className={`hidden h-full w-[300px] flex-col justify-between bg-white px-10 py-14 md:flex`}
+    >
       <div>
         <p className="epilogue mb-12 h-fit w-full text-center text-4xl font-extrabold">
           <span className="text-primary">Team</span>Pu
