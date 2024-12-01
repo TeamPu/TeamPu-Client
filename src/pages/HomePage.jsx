@@ -39,7 +39,7 @@ export default function HomePage() {
           </div>
           <Link
             to="/form"
-            className="h-full pt-2 text-secondary-dark underline hover:text-black"
+            className="h-full pt-2 text-sm text-secondary-dark underline hover:text-black md:text-base"
           >
             신청하기
           </Link>

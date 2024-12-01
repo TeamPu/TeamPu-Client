@@ -17,11 +17,11 @@
 }
 
 .card {
-  @apply w-full bg-secondary-light p-6 md:rounded-[15px] md:bg-white md:p-10;
+  @apply w-full bg-secondary-light px-6 py-10 md:w-fit md:rounded-[15px] md:bg-white md:p-10;
 }
 
 .cardSize {
-  @apply h-[70vh] w-[55vw];
+  @apply h-[80vh] md:h-[70vh] md:w-[55vw];
 }
 
 .menu {
@@ -37,7 +37,7 @@
 }
 
 .description {
-  @apply text-lg font-thin;
+  @apply text-base md:text-lg md:font-light;
 }
 
 .shared-border {
@@ -53,7 +53,7 @@
 }
 
 .button {
-  @apply grid place-items-center bg-primary text-white hover:bg-primary-dark;
+  @apply mb-4 grid place-items-center bg-primary text-white hover:bg-primary-dark md:mb-0;
 }
 
 .res-positive-button {

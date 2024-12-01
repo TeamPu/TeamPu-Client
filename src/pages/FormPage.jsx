@@ -34,7 +34,7 @@ export default function FormPage() {
   };
 
   return (
-    <section className="flex h-screen w-screen gap-x-4 p-4">
+    <section className="flex h-screen w-screen flex-col gap-x-4 p-4 md:flex-row">
       <div className="card flex h-full flex-col justify-between">
         <div className="flex justify-between">
           <p className="title">야간 잔류 신청하기</p>
