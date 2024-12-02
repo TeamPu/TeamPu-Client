@@ -34,21 +34,22 @@ export default function FormPage() {
   };
 
   return (
-    <section className="flex h-screen w-screen flex-col gap-x-4 p-4 md:flex-row">
+    <section className="flex h-screen w-screen flex-col gap-x-4 md:flex-row md:p-4">
       <div className="card flex h-full flex-col justify-between">
+        <div className="h-4 md:hidden"></div>
         <div className="flex justify-between">
-          <p className="title">야간 잔류 신청하기</p>
+          <p className="title mb-4 md:mb-0">야간 잔류 신청하기</p>
           <CalendarNavButton {...calendarProps} />
         </div>
         <HomeCalendar {...calendarProps} />
       </div>
       <div className="flex w-full flex-col gap-y-4">
         <div className="card h-full">
-          <p className="title pb-5">정보 입력하기</p>
+          <p className="title pb-4">정보 입력하기</p>
           <ReservationForm date={value} />
         </div>
         <Link
-          className="button mb-4 rounded-[15px] p-5 text-2xl font-semibold md:mb-0"
+          className="button mx-4 mb-4 rounded-[15px] p-3 text-lg font-semibold md:mx-0 md:mb-0 md:p-5 md:text-2xl"
           to="/complete"
         >
           <p>신청하기</p>
