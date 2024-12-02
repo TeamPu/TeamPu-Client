@@ -64,7 +64,7 @@
     margin: 0;
     padding: 0;
     padding-bottom: 0.5em;
-    padding-top: 0.1em;
+    padding-top: 0em;
   }
 }
 
@@ -83,11 +83,7 @@ abbr {
   font: inherit;
   font-size: 0.75em;
   font-weight: bold;
-  background-color: #f4f4f4;
-
-  @media (max-width: 768px) {
-    background-color: !important #fff;
-  }
+  background-color: !important #f4f4f4;
 }
 
 .react-calendar__month-view__days__day--weekend {
@@ -130,7 +126,6 @@ abbr {
     height: 7vh;
     border-radius: 4px;
     padding: 6px;
-    background-color: #fff;
   }
 }
 
