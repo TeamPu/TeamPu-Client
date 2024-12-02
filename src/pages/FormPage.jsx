@@ -34,7 +34,7 @@ export default function FormPage() {
   };
 
   return (
-    <section className="flex h-screen w-screen gap-x-4 p-4">
+    <section className="flex h-screen w-screen flex-col gap-x-4 p-4 md:flex-row">
       <div className="card flex h-full flex-col justify-between">
         <div className="flex justify-between">
           <p className="title">야간 잔류 신청하기</p>
@@ -48,7 +48,7 @@ export default function FormPage() {
           <ReservationForm date={value} />
         </div>
         <Link
-          className="button rounded-[15px] p-5 text-2xl font-semibold"
+          className="button mb-4 rounded-[15px] p-5 text-2xl font-semibold md:mb-0"
           to="/complete"
         >
           <p>신청하기</p>

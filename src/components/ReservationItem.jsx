@@ -1,6 +1,6 @@
 export default function ReservationItem({ year, date, time, people, admin }) {
   return (
-    <div className="shared-border flex h-20 w-full justify-between bg-secondary-light px-4 py-6">
+    <div className="shared-border flex h-20 w-full justify-between bg-white px-4 py-6 md:bg-secondary-light">
       <div className="flex gap-x-7">
         <div className="flex h-full flex-col justify-center">
           <p className="text-center text-sm font-semibold">{year}</p>

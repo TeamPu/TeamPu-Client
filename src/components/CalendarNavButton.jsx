@@ -18,11 +18,11 @@ export default function CalendarNavButton({
           isPrevDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-gray-200"
         } hover:text-primary`}
       >
-        <MdArrowLeft size={30} />
+        <MdArrowLeft size={24} />
       </button>
-      <span className="title">
-        {currentYear}년{" "}
-        <span className="text-primary">
+      <span className="text-lg font-bold md:text-2xl">
+        {currentYear}년{"  "}
+        <span className="text-lg text-primary md:text-2xl">
           {((currentMonth - 1 + 12) % 12) + 1}월
         </span>
       </span>
@@ -34,7 +34,7 @@ export default function CalendarNavButton({
           isNextDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-gray-200"
         } hover:text-primary`}
       >
-        <MdArrowRight size={30} />
+        <MdArrowRight size={24} />
       </button>
     </div>
   );
