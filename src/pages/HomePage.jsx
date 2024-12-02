@@ -42,17 +42,28 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="flex justify-between">
-          <div className="flex gap-x-4">
-            <p className="title">야간 잔류 신청 현황</p>
+        <div className="mb-4 flex justify-between md:mb-0">
+          <div className="flex items-center gap-x-0 md:gap-x-4">
+            <p className="title hidden md:flex">야간 잔류 신청 현황</p>
             <CalendarNavButton {...calendarProps} />
           </div>
-          <Link
-            to="/form"
-            className="h-full pt-2 text-sm text-secondary-dark underline hover:text-black md:text-base"
-          >
-            신청하기
-          </Link>
+          <div className="relative flex-col">
+            <Link
+              to="/form"
+              className="absolute bottom-6 right-4 h-full pt-2 text-[12px] text-secondary-dark underline hover:text-black md:hidden"
+            >
+              신청하기
+            </Link>
+            <p className="visible pr-4 text-lg font-bold md:hidden">
+              야간 잔류 신청 현황
+            </p>
+            <Link
+              to="/form"
+              className="hidden h-full pt-2 text-secondary-dark underline hover:text-black md:flex"
+            >
+              신청하기
+            </Link>
+          </div>
         </div>
         <HomeCalendar {...calendarProps} />
       </div>
