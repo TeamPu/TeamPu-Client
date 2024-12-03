@@ -37,7 +37,6 @@ export default function HomeCalendar({ firstDay, lastDay, value, onChange }) {
                 dataYM.year === date.getFullYear(),
             );
             if (matchedData) {
-              console.log(matchedData, date.getUTCDate());
               return (
                 <p
                   className="text-sm text-[#666] md:text-base"
