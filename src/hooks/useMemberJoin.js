@@ -76,18 +76,6 @@ export const useMemberJoin = () => {
       });
   };
 
-  const postLogout = () => {
-    axios
-      .post(requests.postMemberLogout)
-      .then((response) => {
-        if (response.status.httpStatus === "OK") {
-          document.cookie = "token=; max-age=0; path=/";
-          window.location.reload();
-        }
-      })
-      .catch((error) => console.error(error));
-  };
-
   const handleChange = (e) => {
     dispatch({ name: e.target.name, value: e.target.value });
   };
@@ -137,6 +125,5 @@ export const useMemberJoin = () => {
     handleLoginSubmit,
     handleLoginChange,
     loginData,
-    postLogout,
   };
 };

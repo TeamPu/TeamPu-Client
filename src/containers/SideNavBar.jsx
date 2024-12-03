@@ -1,10 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import { getCookie } from "../utils/getCookie";
-import { useMemberJoin } from "../hooks";
 export default function SideNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
   const menus = ["홈", "내 예약", "내 정보 관리", "이용수칙"];
-  const { postLogout } = useMemberJoin();
   console.log(getCookie("token"));
   return (
     <div
@@ -33,9 +31,8 @@ export default function SideNavBar() {
       {getCookie("token") ? (
         <Link
           onClick={() => {
-            // document.cookie = "token=; max-age=0; path=/";
-            // window.location.reload();
-            postLogout();
+            document.cookie = "token=; max-age=0; path=/";
+            window.location.reload();
           }}
           to="/"
         >
