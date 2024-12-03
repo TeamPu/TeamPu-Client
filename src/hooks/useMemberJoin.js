@@ -32,19 +32,60 @@ export const useMemberJoin = () => {
     return { ...state, [action.name]: action.value };
   };
 
+  const loginReducer = (state, action) => {
+    switch (action.type) {
+      case "RESET":
+        return initialLoginState;
+      default:
+        return { ...state, [action.name]: action.value };
+    }
+  };
+
   const navigate = useNavigate();
   const [formData, dispatch] = useReducer(reducer, initialState);
-  const [loginData, loginDispatch] = useReducer(reducer, initialLoginState);
+  const [loginData, loginDispatch] = useReducer(
+    loginReducer,
+    initialLoginState,
+  );
   const [loading, setLoading] = useState(false);
 
   const joinMember = (data) => {
-    axios.post(requests.postMemberJoin, data);
+    axios
+      .post(requests.postMemberJoin, data)
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => setLoading(false));
   };
 
   const postLogin = (data) => {
-    axios.post(requests.postMemberLogin, data).then((response) => {
-      document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
-    });
+    axios
+      .post(requests.postMemberLogin, data)
+      .then((response) => {
+        document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
+        navigate("/");
+      })
+      .catch((error) => {
+        if (error.message.includes("401")) {
+          alert("아이디와 비밀번호를 확인해주세요.");
+          loginDispatch({ type: "RESET" });
+        }
+      });
+  };
+
+  const postLogout = () => {
+    axios
+      .post(requests.postMemberLogout)
+      .then((response) => {
+        if (response.status.httpStatus === "OK") {
+          document.cookie = "token=; max-age=0; path=/";
+          window.location.reload();
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   const handleChange = (e) => {
@@ -63,21 +104,6 @@ export const useMemberJoin = () => {
     return true;
   };
 
-  const handleSubmit = async () => {
-    if (!validateForm()) return;
-    setLoading(true);
-    try {
-      joinMember({ ...formData, type: "UNDERGRADUATE" });
-      alert("가입되었습니다.");
-      navigate("/login");
-    } catch (error) {
-      alert("회원가입 실패. 다시 시도해주세요.");
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const validateLoginForm = () => {
     if (!loginData.loginId || !loginData.password) {
       alert("아이디와 비밀번호를 모두 입력해주세요.");
@@ -86,21 +112,21 @@ export const useMemberJoin = () => {
     return true;
   };
 
+  const handleSubmit = async () => {
+    if (!validateForm()) return;
+    setLoading(true);
+    joinMember({ ...formData, type: "UNDERGRADUATE" });
+  };
+
   const handleLoginSubmit = async () => {
     if (!validateLoginForm()) return;
-    setLoading(true);
-    try {
-      postLogin({ ...loginData });
-      navigate("/");
-    } catch (error) {
-      alert("아이디와 비밀번호를 확인해주세요.");
-      console.error(error);
-    }
+    postLogin({ ...loginData });
   };
 
   return {
     initialState,
     placeholders,
+    formData,
     reducer,
     joinMember,
     handleChange,
@@ -111,5 +137,6 @@ export const useMemberJoin = () => {
     handleLoginSubmit,
     handleLoginChange,
     loginData,
+    postLogout,
   };
 };

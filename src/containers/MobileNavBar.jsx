@@ -1,11 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoIosMenu } from "react-icons/io";
-import { useMobileNavBar } from "../hooks";
+import { useMemberJoin, useMobileNavBar } from "../hooks";
+import { getCookie } from "../utils/getCookie";
 
 export default function MobileNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
   const menus = ["홈", "내 예약", "내 정보 관리", "이용수칙"];
   const { opened, setOpened, sidebarRef, buttonRef } = useMobileNavBar();
+  const { postLogout } = useMemberJoin();
 
   return (
     <div className="relative flex flex-col">
@@ -42,9 +44,22 @@ export default function MobileNavBar() {
             })}
           </div>
         </div>
-        <Link to="/login" className="hover:text-primary">
-          로그인
-        </Link>
+        {getCookie("token") ? (
+          <Link
+            onClick={() => {
+              // document.cookie = "token=; max-age=0; path=/";
+              // window.location.reload();
+              postLogout();
+            }}
+            to="/"
+          >
+            로그아웃
+          </Link>
+        ) : (
+          <Link to="/login" className="hover:text-primary">
+            로그인
+          </Link>
+        )}
       </div>
     </div>
   );

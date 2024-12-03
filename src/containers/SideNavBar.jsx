@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import { getCookie } from "../utils/getCookie";
+import { useMemberJoin } from "../hooks";
 export default function SideNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
   const menus = ["홈", "내 예약", "내 정보 관리", "이용수칙"];
+  const { postLogout } = useMemberJoin();
+  console.log(getCookie("token"));
   return (
     <div
       className={`hidden h-full w-[300px] flex-col justify-between bg-white px-10 py-14 md:flex`}
@@ -26,10 +30,22 @@ export default function SideNavBar() {
           })}
         </div>
       </div>
-      <Link to="/login" className="hover:text-primary">
-        로그인
-      </Link>
-      {/* 차후 로그인 되어있으면 로그아웃, 로그인 되어있지 않으면 로그인으로 conditional rendering */}
+      {getCookie("token") ? (
+        <Link
+          onClick={() => {
+            // document.cookie = "token=; max-age=0; path=/";
+            // window.location.reload();
+            postLogout();
+          }}
+          to="/"
+        >
+          로그아웃
+        </Link>
+      ) : (
+        <Link to="/login" className="hover:text-primary">
+          로그인
+        </Link>
+      )}
     </div>
   );
 }
