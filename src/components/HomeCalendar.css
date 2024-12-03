@@ -70,6 +70,7 @@
 
 abbr {
   text-decoration: none;
+  position: sticky;
 
   @media (max-width: 768px) {
     font-size: 0.7rem;
@@ -114,9 +115,8 @@ abbr {
   min-height: 7vh;
   max-height: 10vh;
   padding: 10px;
-  display: flex;
-  text-align: start;
-  justify-content: flex-start;
+  display: grid;
+  place-items: center;
   font: inherit;
   background-color: #f4f4f4;
   border-radius: 8px;
