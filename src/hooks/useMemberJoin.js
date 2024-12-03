@@ -42,9 +42,9 @@ export const useMemberJoin = () => {
   };
 
   const postLogin = (data) => {
-    axios
-      .post(requests.postMemberLogin, data)
-      .then((response) => console.log(response));
+    axios.post(requests.postMemberLogin, data).then((response) => {
+      document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
+    });
   };
 
   const handleChange = (e) => {
