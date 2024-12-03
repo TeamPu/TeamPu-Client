@@ -3,7 +3,6 @@ import { getCookie } from "../utils/getCookie";
 export default function SideNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
   const menus = ["홈", "내 예약", "내 정보 관리", "이용수칙"];
-  console.log(getCookie("token"));
   return (
     <div
       className={`hidden h-full w-[300px] flex-col justify-between bg-white px-10 py-14 md:flex`}
