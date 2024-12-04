@@ -1,6 +1,14 @@
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Variable.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 .react-calendar {
   width: 100%;
-  font-family: "Pretendard";
+  font-family: !important "Pretendard Variable";
   line-height: 1.125em;
 
   @media (max-width: 768px) {
@@ -69,6 +77,7 @@
 }
 
 abbr {
+  font-weight: 500;
   text-decoration: none;
   position: sticky;
 

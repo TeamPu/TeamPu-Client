@@ -39,7 +39,7 @@ export default function HomeCalendar({ firstDay, lastDay, value, onChange }) {
             if (matchedData) {
               return (
                 <p
-                  className="text-sm text-[#666] md:text-base"
+                  className="text-sm font-semibold text-[#666] md:text-base"
                   key={matchedData.day}
                 >
                   <span className="text-primary-dark">
