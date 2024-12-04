@@ -2,9 +2,11 @@ import { axios, requests } from "../apis";
 import { useNavigate } from "react-router-dom";
 import { useState, useReducer } from "react";
 import { useAdminView } from "./useAdminView";
+import { getCookie } from "../utils";
 
 export const useMemberJoin = () => {
   const { fetchAdmin } = useAdminView();
+  const [editedData, setEditedData] = useState();
 
   const initialState = {
     loginId: "",
@@ -19,6 +21,12 @@ export const useMemberJoin = () => {
   const initialLoginState = {
     loginId: "",
     password: "",
+  };
+
+  const initialEditState = {
+    name: "",
+    phoneNumber: "",
+    email: "",
   };
 
   const placeholders = [
@@ -50,6 +58,7 @@ export const useMemberJoin = () => {
     loginReducer,
     initialLoginState,
   );
+  const [editData, editDispatch] = useReducer(reducer, initialEditState);
   const [loading, setLoading] = useState(false);
 
   const joinMember = (data) => {
@@ -67,6 +76,17 @@ export const useMemberJoin = () => {
   const postLogin = (data) => {
     vertifyAdmin(data);
   };
+
+  const postEdit = (data) => {
+    editUser(data);
+  };
+
+  async function editUser(data) {
+    const response = await axios.patch(requests.patchUserInfo, data, {
+      headers: { Authorization: getCookie("token") },
+    });
+    setEditedData(response.data.body);
+  }
 
   async function vertifyAdmin(data) {
     const response = await axios.post(requests.postMemberLogin, data);
@@ -89,6 +109,10 @@ export const useMemberJoin = () => {
 
   const handleLoginChange = (e) => {
     loginDispatch({ name: e.target.name, value: e.target.value });
+  };
+
+  const handleEditChange = (e) => {
+    editDispatch({ name: e.target.name, value: e.target.value });
   };
 
   const validateForm = () => {
@@ -118,6 +142,10 @@ export const useMemberJoin = () => {
     postLogin({ ...loginData });
   };
 
+  const handleEditSubmit = async () => {
+    postEdit({ ...editData });
+  };
+
   return {
     initialState,
     placeholders,
@@ -132,5 +160,9 @@ export const useMemberJoin = () => {
     handleLoginSubmit,
     handleLoginChange,
     loginData,
+    handleEditChange,
+    handleEditSubmit,
+    editData,
+    editedData,
   };
 };
