@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
 import { CalendarNavButton, HomeCalendar } from "../components/";
 import { useCalendarDate } from "../hooks/";
+import { getCookie } from "../utils";
+import { useState } from "react";
+import LoginAlertModal from "../components/LoginAlertModal";
 
 export default function HomePage() {
   const {
@@ -29,8 +31,16 @@ export default function HomePage() {
     onChange,
   };
 
+  const [modal, setModal] = useState(false);
+
+  const onModal = () => {
+    setModal(true);
+    setTimeout(() => setModal(false), 2500);
+  };
+
   return (
     <section className="section">
+      <LoginAlertModal visible={modal} onClick={setModal} />
       <div className="card">
         <div className="visible mb-10 flex flex-col items-center md:hidden">
           <p className="epilogue h-fit w-full text-center text-5xl font-extrabold">
@@ -48,21 +58,29 @@ export default function HomePage() {
             <CalendarNavButton {...calendarProps} />
           </div>
           <div className="relative flex-col">
-            <Link
-              to="/form"
-              className="absolute bottom-6 right-4 h-full pt-2 text-[12px] text-secondary-dark underline hover:text-black md:hidden"
+            <button
+              className="absolute bottom-9 right-4 h-full pt-2 text-[12px] text-secondary-dark underline hover:text-black md:hidden"
+              onClick={() => {
+                getCookie("token")
+                  ? (window.location.href = "/form")
+                  : onModal();
+              }}
             >
               신청하기
-            </Link>
+            </button>
             <p className="visible pr-4 text-lg font-bold md:hidden">
               야간 잔류 신청 현황
             </p>
-            <Link
-              to="/form"
+            <button
+              onClick={() => {
+                getCookie("token")
+                  ? (window.location.href = "/form")
+                  : onModal();
+              }}
               className="hidden h-full pt-2 text-secondary-dark underline hover:text-black md:flex"
             >
               신청하기
-            </Link>
+            </button>
           </div>
         </div>
         <HomeCalendar {...calendarProps} />
