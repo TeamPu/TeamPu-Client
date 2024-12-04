@@ -12,24 +12,30 @@ export default function ReservationView({ admin = false }) {
   }
 
   useEffect(() => {
-    waitData();
+    if (admin) {
+      waitData();
+    }
   }, []);
 
   // 나중에 selected 받아와서 백엔드연동
   return (
     <div className="flex h-full w-full flex-col gap-y-2.5 overflow-scroll">
-      {res.map((data, index) => {
-        return (
-          <ReservationItem
-            key={index}
-            year={data.startTime.slice(0, 4)}
-            date={data.startTime.slice(5, 10)}
-            time={`${data.startTime.slice(11, 16)} ~ ${data.endTime.slice(11, 16)}`}
-            people={`${data.applicant.name} 외 ${data.applicantCount - 1}명`}
-            admin={admin}
-          />
-        );
-      })}
+      {res.length === 0 ? (
+        <p>예약이 없습니다.</p>
+      ) : (
+        res.map((data, index) => {
+          return (
+            <ReservationItem
+              key={index}
+              year={data.startTime.slice(0, 4)}
+              date={data.startTime.slice(5, 10)}
+              time={`${data.startTime.slice(11, 16)} ~ ${data.endTime.slice(11, 16)}`}
+              people={`${data.applicant.name} 외 ${data.applicantCount - 1}명`}
+              admin={admin}
+            />
+          );
+        })
+      )}
     </div>
   );
 }
