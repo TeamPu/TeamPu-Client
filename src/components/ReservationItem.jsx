@@ -1,4 +1,24 @@
-export default function ReservationItem({ year, date, time, people, admin }) {
+import { axios, requests } from "../apis";
+import { getCookie } from "../utils";
+
+export default function ReservationItem({
+  id,
+  year,
+  date,
+  time,
+  people,
+  admin,
+}) {
+  const data = { applicationId: id, status: "" };
+
+  async function manageResRequest() {
+    await axios.post(
+      requests.postResAcceptDecline,
+      { ...data },
+      { headers: { Authorization: getCookie("token") } },
+    );
+  }
+
   return (
     <div className="shared-border flex h-20 w-full justify-between bg-white px-4 py-6 md:bg-secondary-light">
       <div className="flex gap-x-7">
@@ -14,8 +34,26 @@ export default function ReservationItem({ year, date, time, people, admin }) {
       <div className="flex w-20 flex-col justify-center gap-y-1">
         {admin ? (
           <>
-            <button className="button res-positive-button">승인</button>
-            <button className="res-negative-button">거부</button>
+            <button
+              className="button res-positive-button"
+              onClick={() => {
+                data.status = "APPROVED";
+                console.log(data);
+                manageResRequest();
+              }}
+            >
+              승인
+            </button>
+            <button
+              className="res-negative-button"
+              onClick={() => {
+                data.status = "REJECTED";
+                console.log(data);
+                manageResRequest();
+              }}
+            >
+              거부
+            </button>
           </>
         ) : (
           <>

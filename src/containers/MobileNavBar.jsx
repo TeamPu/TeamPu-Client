@@ -49,9 +49,8 @@ export default function MobileNavBar() {
             onClick={() => {
               document.cookie = "token=; max-age=0; path=/";
               document.cookie = "admin=; max-age=0; path=/";
-              window.location.host("/");
+              window.location.href = "/";
             }}
-            to="/"
           >
             로그아웃
           </Link>

@@ -10,7 +10,7 @@ export default function RulesPage() {
           src={TeamProjectRoom}
           alt="Team Project Room"
         />
-        <div className="description">
+        <div className="description overflow-y-scroll">
           <ul>
             <li>깨끗한 환경 유지를 위해 취식은 금지되어 있습니다.</li>
             <li>이용 시간은 밤 10시까지입니다.</li>

@@ -33,7 +33,7 @@ export default function SideNavBar() {
           onClick={() => {
             document.cookie = "token=; max-age=0; path=/";
             document.cookie = "admin=; max-age=0; path=/";
-            window.location.host("/");
+            window.location.href = "/";
           }}
           to="/"
         >

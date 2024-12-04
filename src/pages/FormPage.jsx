@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
 import {
   CalendarNavButton,
   HomeCalendar,
   ReservationForm,
 } from "../components/";
 import { useCalendarDate } from "../hooks/";
+import { axios, requests } from "../apis";
+import { getCookie } from "../utils";
 
 export default function FormPage() {
   const {
@@ -33,6 +34,33 @@ export default function FormPage() {
     onChange,
   };
 
+  const data = {
+    startTime: "2024-12-01T10:00:00",
+    endTime: "2024-12-01T12:00:00",
+    appliedDate: "2024-12-01",
+    status: "PENDING",
+    coApplicants: [
+      {
+        name: "정재우",
+        phoneNumber: "010-1111-1111",
+        admin: false,
+      },
+      {
+        name: "이유성",
+        phoneNumber: "010-5501-6547",
+        admin: false,
+      },
+    ],
+  };
+
+  async function handleForm() {
+    console.log(data);
+    await axios.post(requests.postNewReservation, data, {
+      headers: { Authorization: getCookie("token") },
+    });
+    window.location.href = "/complete";
+  }
+
   return (
     <section className="flex h-screen w-screen flex-col gap-x-4 md:flex-row md:p-4">
       <div className="card flex h-full flex-col justify-between">
@@ -48,12 +76,14 @@ export default function FormPage() {
           <p className="title pb-4">정보 입력하기</p>
           <ReservationForm date={value} />
         </div>
-        <Link
+        <button
           className="button mx-4 mb-4 rounded-[15px] p-3 text-lg font-semibold md:mx-0 md:mb-0 md:p-5 md:text-2xl"
-          to="/complete"
+          onClick={() => {
+            handleForm();
+          }}
         >
           <p>신청하기</p>
-        </Link>
+        </button>
       </div>
     </section>
   );
