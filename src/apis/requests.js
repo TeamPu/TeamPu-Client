@@ -3,4 +3,5 @@ export const requests = {
   postMemberLogin: "/api/login",
   fetchAllReservations: "/api/apply/home",
   fetchUserInfo: "api/profile",
+  fetchAllResAdmin: "/api/admin/applications",
 };

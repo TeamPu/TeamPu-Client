@@ -11,5 +11,10 @@ export const useAdminView = () => {
     return isAdmin;
   }
 
-  return { fetchAdmin };
+  async function fetchAdminReservation() {
+    const response = await axios.get(requests.fetchAllResAdmin);
+    return response.data.body;
+  }
+
+  return { fetchAdmin, fetchAdminReservation };
 };
