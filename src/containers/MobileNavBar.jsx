@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoIosMenu } from "react-icons/io";
 import { useMobileNavBar } from "../hooks";
+import { getCookie } from "../utils/getCookie";
 
 export default function MobileNavBar() {
   const links = ["/", "/reservation", "/mypage", "rules"];
@@ -27,24 +28,38 @@ export default function MobileNavBar() {
             <span className="text-primary">Team</span>Pu
           </p>
           <div className="flex flex-col gap-5 text-xl font-semibold">
-            {links.map((link, i) => {
-              return (
-                <NavLink
-                  key={i}
-                  to={link}
-                  className={({ isActive }) =>
-                    isActive ? "text-primary" : "text-black"
-                  }
-                >
-                  {menus[i]}
-                </NavLink>
-              );
-            })}
+            {!getCookie("admin") &&
+              links.map((link, i) => {
+                return (
+                  <NavLink
+                    key={i}
+                    to={link}
+                    className={({ isActive }) =>
+                      isActive ? "text-primary" : "text-black"
+                    }
+                  >
+                    {menus[i]}
+                  </NavLink>
+                );
+              })}
           </div>
         </div>
-        <Link to="/login" className="hover:text-primary">
-          로그인
-        </Link>
+        {getCookie("token") ? (
+          <Link
+            onClick={() => {
+              document.cookie = "token=; max-age=0; path=/";
+              document.cookie = "admin=; max-age=0; path=/";
+              window.location.host("/");
+            }}
+            to="/"
+          >
+            로그아웃
+          </Link>
+        ) : (
+          <Link to="/login" className="hover:text-primary">
+            로그인
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
+import { useMemberJoin } from "../hooks";
 import { Link } from "react-router-dom";
 import FormInput from "./FormInput";
 
 export default function LoginForm() {
+  const { handleLoginChange, handleLoginSubmit, loginData } = useMemberJoin();
+
   return (
     <>
       <div className="flex gap-x-2.5">
@@ -11,8 +14,10 @@ export default function LoginForm() {
             noLabel={true}
             type="id"
             id="id"
-            name="id"
+            name="loginId"
             placeholder="아이디"
+            value={loginData["loginId"]}
+            onChange={handleLoginChange}
           />
           <FormInput
             key="password"
@@ -20,10 +25,17 @@ export default function LoginForm() {
             type="password"
             id="password"
             name="password"
-            placeholder="비밀번호 "
+            placeholder="비밀번호"
+            value={loginData["password"]}
+            onChange={handleLoginChange}
           />
         </div>
-        <button className="button rounded-[8px] p-3">로그인</button>
+        <button
+          className="button rounded-[8px] p-3"
+          onClick={handleLoginSubmit}
+        >
+          로그인
+        </button>
       </div>
       <div className="flex justify-start pt-2.5 text-secondary-dark underline">
         <Link to="/join" className="mr-2.5">

@@ -6,6 +6,8 @@ export default function FormInput({
   disabled = false,
   placeholder = "",
   noLabel = false,
+  value,
+  onChange,
 }) {
   return (
     <div className="flex flex-col gap-y-2.5">
@@ -19,6 +21,8 @@ export default function FormInput({
         className="shared-border input"
         disabled={disabled}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

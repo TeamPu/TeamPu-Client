@@ -1,4 +1,20 @@
+import { axios, requests } from "../apis";
+import { getCookie } from "../utils";
+
 export const useAdminView = () => {
-  // cookie에서 token을 꺼내 검사, admin인지 확인 후 여부에 따라 true, false 리턴
-  return false;
+  async function fetchAdmin() {
+    const response = await axios.get(requests.fetchUserInfo, {
+      headers: { Authorization: getCookie("token") },
+    });
+    const isAdmin = response.data.body.admin;
+    if (isAdmin) document.cookie = `admin=true; max-age=3600; path=/`;
+    return isAdmin;
+  }
+
+  async function fetchAdminReservation() {
+    const response = await axios.get(requests.fetchAllResAdmin);
+    return response.data.body;
+  }
+
+  return { fetchAdmin, fetchAdminReservation };
 };

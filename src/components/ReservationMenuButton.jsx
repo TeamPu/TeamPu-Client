@@ -6,7 +6,7 @@ export default function ReservationMenuButton({ selected, handleClicked }) {
       {menus.map((menu, index) => (
         <div
           key={index}
-          className={`grid h-8 w-20 place-items-center rounded lg:w-28 md:${selected === index ? "bg-white" : "bg-secondary-light"} ${selected === index ? "bg-secondary-light" : "bg-white"} text-sm`}
+          className={`grid h-8 w-20 cursor-pointer place-items-center rounded lg:w-28 ${selected === index ? "md:bg-white" : "md:bg-secondary-light"} ${selected === index ? "bg-secondary-light" : "bg-white"} text-sm`}
           onClick={() => handleClicked(index)}
         >
           {menu}

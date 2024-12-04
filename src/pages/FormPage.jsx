@@ -44,7 +44,7 @@ export default function FormPage() {
         <HomeCalendar {...calendarProps} />
       </div>
       <div className="flex w-full flex-col gap-y-4">
-        <div className="card h-full">
+        <div className="h-full w-full bg-secondary-light px-6 py-4 md:rounded-[15px] md:bg-white md:p-10">
           <p className="title pb-4">정보 입력하기</p>
           <ReservationForm date={value} />
         </div>
