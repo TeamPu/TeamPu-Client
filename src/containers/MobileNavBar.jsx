@@ -28,26 +28,28 @@ export default function MobileNavBar() {
             <span className="text-primary">Team</span>Pu
           </p>
           <div className="flex flex-col gap-5 text-xl font-semibold">
-            {links.map((link, i) => {
-              return (
-                <NavLink
-                  key={i}
-                  to={link}
-                  className={({ isActive }) =>
-                    isActive ? "text-primary" : "text-black"
-                  }
-                >
-                  {menus[i]}
-                </NavLink>
-              );
-            })}
+            {!getCookie("admin") &&
+              links.map((link, i) => {
+                return (
+                  <NavLink
+                    key={i}
+                    to={link}
+                    className={({ isActive }) =>
+                      isActive ? "text-primary" : "text-black"
+                    }
+                  >
+                    {menus[i]}
+                  </NavLink>
+                );
+              })}
           </div>
         </div>
         {getCookie("token") ? (
           <Link
             onClick={() => {
               document.cookie = "token=; max-age=0; path=/";
-              window.location.reload();
+              document.cookie = "admin=; max-age=0; path=/";
+              window.location.host("/");
             }}
             to="/"
           >

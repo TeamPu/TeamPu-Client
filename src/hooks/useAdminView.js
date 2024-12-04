@@ -3,13 +3,13 @@ import { getCookie } from "../utils";
 
 export const useAdminView = () => {
   async function fetchAdmin() {
-    const isAdmin = await axios
-      .get(requests.fetchUserInfo, {
-        headers: { Authorization: getCookie("token") },
-      })
-      .data.body.admin();
+    const response = await axios.get(requests.fetchUserInfo, {
+      headers: { Authorization: getCookie("token") },
+    });
+    const isAdmin = response.data.body.admin;
+    if (isAdmin) document.cookie = `admin=true; max-age=3600; path=/`;
     return isAdmin;
   }
 
-  return fetchAdmin();
+  return { fetchAdmin };
 };

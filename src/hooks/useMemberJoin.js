@@ -1,8 +1,11 @@
 import { axios, requests } from "../apis";
 import { useNavigate } from "react-router-dom";
 import { useState, useReducer } from "react";
+import { useAdminView } from "./useAdminView";
 
 export const useMemberJoin = () => {
+  const { fetchAdmin } = useAdminView();
+
   const initialState = {
     loginId: "",
     password: "",
@@ -62,19 +65,23 @@ export const useMemberJoin = () => {
   };
 
   const postLogin = (data) => {
-    axios
-      .post(requests.postMemberLogin, data)
-      .then((response) => {
-        document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
-        navigate("/");
-      })
-      .catch((error) => {
-        if (error.message.includes("401")) {
-          alert("아이디와 비밀번호를 확인해주세요.");
-          loginDispatch({ type: "RESET" });
-        }
-      });
+    vertifyAdmin(data);
   };
+
+  async function vertifyAdmin(data) {
+    const response = await axios.post(requests.postMemberLogin, data);
+    if (response.status === 401) {
+      alert("아이디와 비밀번호를 확인해주세요.");
+      loginDispatch({ type: "RESET" });
+    }
+    document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
+    const isAdmin = await fetchAdmin();
+    if (isAdmin) {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
+  }
 
   const handleChange = (e) => {
     dispatch({ name: e.target.name, value: e.target.value });
