@@ -36,7 +36,6 @@ export default function ReservationView({
 
   const status = ["APPROVED", "PENDING", "", "REJECTED"];
 
-  // 나중에 selected 받아와서 백엔드연동
   return (
     <div className="flex h-full w-full flex-col gap-y-2.5 overflow-scroll">
       {res.length === 0 ? (
