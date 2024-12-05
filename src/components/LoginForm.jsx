@@ -1,9 +1,9 @@
-import { useMemberJoin } from "../hooks";
+import { useMemberLogin } from "../hooks";
 import { Link } from "react-router-dom";
 import FormInput from "./FormInput";
 
 export default function LoginForm() {
-  const { handleLoginChange, handleLoginSubmit, loginData } = useMemberJoin();
+  const { handleLoginChange, handleLoginSubmit, loginData } = useMemberLogin();
 
   return (
     <>

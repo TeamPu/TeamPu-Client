@@ -8,4 +8,5 @@ export const requests = {
   fetchAllResAdmin: "/api/admin/applications",
   fetchAllMyRes: "/api/apply/my",
   patchUserInfo: "/api/profile",
+  deleteReservation: "/api/apply/",
 };

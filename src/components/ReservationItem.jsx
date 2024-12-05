@@ -19,6 +19,12 @@ export default function ReservationItem({
     );
   }
 
+  async function deleteResRequest() {
+    await axios.delete(requests.deleteReservation + id, {
+      headers: { Authorization: getCookie("token") },
+    });
+  }
+
   return (
     <div className="shared-border flex h-20 w-full justify-between bg-white px-4 py-6 md:bg-secondary-light">
       <div className="flex gap-x-7">
@@ -57,8 +63,12 @@ export default function ReservationItem({
           </>
         ) : (
           <>
-            <button className="button res-positive-button">편집</button>
-            <button className="res-negative-button">취소</button>
+            <button
+              className="res-negative-button"
+              onClick={() => deleteResRequest()}
+            >
+              취소
+            </button>
           </>
         )}
       </div>

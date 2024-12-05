@@ -1,11 +1,9 @@
 import { axios, requests } from "../apis";
 import { useNavigate } from "react-router-dom";
 import { useState, useReducer } from "react";
-import { useAdminView } from "./useAdminView";
 import { getCookie } from "../utils";
 
 export const useMemberJoin = () => {
-  const { fetchAdmin } = useAdminView();
   const [editedData, setEditedData] = useState();
 
   const initialState = {
@@ -16,11 +14,6 @@ export const useMemberJoin = () => {
     department: "",
     phoneNumber: "",
     email: "",
-  };
-
-  const initialLoginState = {
-    loginId: "",
-    password: "",
   };
 
   const initialEditState = {
@@ -43,43 +36,25 @@ export const useMemberJoin = () => {
     return { ...state, [action.name]: action.value };
   };
 
-  const loginReducer = (state, action) => {
-    switch (action.type) {
-      case "RESET":
-        return initialLoginState;
-      default:
-        return { ...state, [action.name]: action.value };
-    }
-  };
-
   const navigate = useNavigate();
   const [formData, dispatch] = useReducer(reducer, initialState);
-  const [loginData, loginDispatch] = useReducer(
-    loginReducer,
-    initialLoginState,
-  );
   const [editData, editDispatch] = useReducer(reducer, initialEditState);
   const [loading, setLoading] = useState(false);
 
-  const joinMember = (data) => {
-    axios
-      .post(requests.postMemberJoin, data)
-      .then(() => {
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => setLoading(false));
-  };
-
-  const postLogin = (data) => {
-    vertifyAdmin(data);
+  const postJoin = (data) => {
+    joinUser(data);
   };
 
   const postEdit = (data) => {
     editUser(data);
   };
+
+  async function joinUser(data) {
+    if (validateForm) {
+      await axios.post(requests.postMemberJoin, data);
+      navigate("/login");
+    }
+  }
 
   async function editUser(data) {
     const response = await axios.patch(requests.patchUserInfo, data, {
@@ -88,27 +63,8 @@ export const useMemberJoin = () => {
     setEditedData(response.data.body);
   }
 
-  async function vertifyAdmin(data) {
-    const response = await axios.post(requests.postMemberLogin, data);
-    if (response.status === 401) {
-      alert("아이디와 비밀번호를 확인해주세요.");
-      loginDispatch({ type: "RESET" });
-    }
-    document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
-    const isAdmin = await fetchAdmin();
-    if (isAdmin) {
-      navigate("/admin");
-    } else {
-      navigate("/");
-    }
-  }
-
   const handleChange = (e) => {
     dispatch({ name: e.target.name, value: e.target.value });
-  };
-
-  const handleLoginChange = (e) => {
-    loginDispatch({ name: e.target.name, value: e.target.value });
   };
 
   const handleEditChange = (e) => {
@@ -123,23 +79,10 @@ export const useMemberJoin = () => {
     return true;
   };
 
-  const validateLoginForm = () => {
-    if (!loginData.loginId || !loginData.password) {
-      alert("아이디와 비밀번호를 모두 입력해주세요.");
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = async () => {
     if (!validateForm()) return;
     setLoading(true);
-    joinMember({ ...formData, type: "UNDERGRADUATE" });
-  };
-
-  const handleLoginSubmit = async () => {
-    if (!validateLoginForm()) return;
-    postLogin({ ...loginData });
+    postJoin({ ...formData, type: "UNDERGRADUATE" });
   };
 
   const handleEditSubmit = async () => {
@@ -151,15 +94,11 @@ export const useMemberJoin = () => {
     placeholders,
     formData,
     reducer,
-    joinMember,
+    postJoin,
     handleChange,
     handleSubmit,
     validateForm,
     loading,
-    postLogin,
-    handleLoginSubmit,
-    handleLoginChange,
-    loginData,
     handleEditChange,
     handleEditSubmit,
     editData,

@@ -44,5 +44,6 @@ export const useCalendarDate = () => {
     currentYear,
     value,
     onChange,
+    today,
   };
 };

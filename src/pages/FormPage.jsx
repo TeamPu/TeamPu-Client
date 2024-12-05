@@ -6,6 +6,7 @@ import {
 import { useCalendarDate } from "../hooks/";
 import { axios, requests } from "../apis";
 import { getCookie } from "../utils";
+import moment from "moment";
 
 export default function FormPage() {
   const {
@@ -19,6 +20,7 @@ export default function FormPage() {
     currentYear,
     value,
     onChange,
+    today,
   } = useCalendarDate();
 
   const calendarProps = {
@@ -35,9 +37,9 @@ export default function FormPage() {
   };
 
   const data = {
-    startTime: "2024-12-01T10:00:00",
-    endTime: "2024-12-01T12:00:00",
-    appliedDate: "2024-12-01",
+    startTime: `${moment(value).format("YYYY-MM-DD")}T17:00:00`,
+    endTime: `${moment(value).format("YYYY-MM-DD")}T22:00:00`,
+    appliedDate: `${moment(today).format("YYYY-MM-DD")}`,
     status: "PENDING",
     coApplicants: [
       {
