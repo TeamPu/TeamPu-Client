@@ -1,6 +1,6 @@
 import { IoIosClose } from "react-icons/io";
 
-export default function LoginAlertModal({ visible = false, onClick }) {
+export default function AlertModal({ visible = false, onClick, text }) {
   return (
     <div
       className={`${
@@ -15,7 +15,7 @@ export default function LoginAlertModal({ visible = false, onClick }) {
       >
         <IoIosClose size={24} />
       </button>
-      <p className="text-center">로그인 후 신청 가능해요!</p>
+      <p className="text-center">{text}</p>
     </div>
   );
 }
