@@ -6,5 +6,6 @@ export const requests = {
   fetchAllReservations: "/api/apply/home",
   fetchUserInfo: "api/profile",
   fetchAllResAdmin: "/api/admin/applications",
+  fetchAllMyRes: "/api/apply/my",
   patchUserInfo: "/api/profile",
 };

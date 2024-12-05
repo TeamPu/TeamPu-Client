@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAdminView } from "../hooks";
 import ReservationItem from "./ReservationItem";
+import { axios, requests } from "../apis";
+import { getCookie } from "../utils";
 
 export default function ReservationView({
   selected,
@@ -10,15 +12,25 @@ export default function ReservationView({
   const { fetchAdminReservation } = useAdminView();
   const [res, setRes] = useState([]);
 
-  async function waitData() {
+  async function waitDataAdmin() {
     const response = await fetchAdminReservation();
     setRes(response);
     console.log(response);
   }
 
+  async function waitData() {
+    const response = await axios.get(requests.fetchAllMyRes, {
+      headers: { Authorization: getCookie("token") },
+    });
+    setRes(response.data.body);
+    console.log(response.data.body);
+  }
+
   useEffect(() => {
     if (admin) {
       handleClicked(1);
+      waitDataAdmin();
+    } else {
       waitData();
     }
   }, []);
