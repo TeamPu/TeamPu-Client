@@ -8,8 +8,16 @@ export default function ReservationItem({
   time,
   people,
   admin,
+  setVisible,
+  setText,
+  setReload,
 }) {
   const data = { applicationId: id, status: "" };
+
+  const onModal = () => {
+    setVisible(true);
+    setTimeout(() => setVisible(false), 2000);
+  };
 
   async function manageResRequest() {
     await axios.post(
@@ -17,6 +25,15 @@ export default function ReservationItem({
       { ...data },
       { headers: { Authorization: getCookie("token") } },
     );
+    if (data.status === "APPROVED") {
+      setText("승인");
+      setReload();
+      onModal();
+    } else {
+      setText("반려");
+      setReload();
+      onModal();
+    }
   }
 
   async function deleteResRequest() {

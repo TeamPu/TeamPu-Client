@@ -3,6 +3,7 @@ import { useAdminView } from "../hooks";
 import ReservationItem from "./ReservationItem";
 import { axios, requests } from "../apis";
 import { getCookie } from "../utils";
+import AlertModal from "./AlertModal";
 
 export default function ReservationView({
   selected,
@@ -11,11 +12,12 @@ export default function ReservationView({
 }) {
   const { fetchAdminReservation } = useAdminView();
   const [res, setRes] = useState([]);
+  const [text, setText] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   async function waitDataAdmin() {
     const response = await fetchAdminReservation();
     setRes(response);
-    console.log(response);
   }
 
   async function waitData() {
@@ -38,6 +40,12 @@ export default function ReservationView({
 
   return (
     <div className="flex h-full w-full flex-col gap-y-2.5 overflow-scroll">
+      <AlertModal
+        text={`${text}처리가 완료되었습니다.`}
+        setText={setText}
+        visible={modalVisible}
+        onClick={setModalVisible}
+      />
       {res.length === 0 ? (
         <p>예약이 없습니다.</p>
       ) : (
@@ -53,6 +61,9 @@ export default function ReservationView({
                 time={`${data.startTime.slice(11, 16)} ~ ${data.endTime.slice(11, 16)}`}
                 people={`${data.applicant.name} 외 ${data.applicantCount - 1}명`}
                 admin={admin}
+                setText={setText}
+                setVisible={setModalVisible}
+                setReload={waitDataAdmin}
               />
             );
           })
