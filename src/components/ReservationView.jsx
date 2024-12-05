@@ -23,7 +23,6 @@ export default function ReservationView({
       headers: { Authorization: getCookie("token") },
     });
     setRes(response.data.body);
-    console.log(response.data.body);
   }
 
   useEffect(() => {
