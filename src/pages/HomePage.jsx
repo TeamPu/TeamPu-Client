@@ -1,8 +1,7 @@
-import { CalendarNavButton, HomeCalendar } from "../components/";
+import { CalendarNavButton, HomeCalendar, AlertModal } from "../components/";
 import { useCalendarDate } from "../hooks/";
 import { getCookie } from "../utils";
 import { useState } from "react";
-import LoginAlertModal from "../components/LoginAlertModal";
 
 export default function HomePage() {
   const {
@@ -40,7 +39,11 @@ export default function HomePage() {
 
   return (
     <section className="section">
-      <LoginAlertModal visible={modal} onClick={setModal} />
+      <AlertModal
+        visible={modal}
+        onClick={setModal}
+        text="로그인 후 신청 가능해요!"
+      />
       <div className="card">
         <div className="visible mb-10 flex flex-col items-center md:hidden">
           <p className="epilogue h-fit w-full text-center text-5xl font-extrabold">
