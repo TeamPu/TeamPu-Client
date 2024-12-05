@@ -17,7 +17,7 @@ export default function AdminPage() {
           <ReservationView {...menuProps} admin={true} />
           {getCookie("admin") && (
             <Link
-              className="flex md:hidden"
+              className="mt-6 flex md:hidden"
               onClick={() => {
                 document.cookie = "token=; max-age=0; path=/";
                 document.cookie = "admin=; max-age=0; path=/";
