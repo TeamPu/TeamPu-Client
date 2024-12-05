@@ -35,7 +35,7 @@ export default function HomePage() {
 
   const onModal = () => {
     setModal(true);
-    setTimeout(() => setModal(false), 2500);
+    setTimeout(() => setModal(false), 2000);
   };
 
   return (
