@@ -48,7 +48,7 @@ export default function ReservationView({
       />
       {res.length === 0 ? (
         <p>예약이 없습니다.</p>
-      ) : (
+      ) : res.filter((data) => data.status === status[selected]).length > 0 ? (
         res
           .filter((data) => data.status === status[selected])
           .map((data, index) => {
@@ -67,6 +67,8 @@ export default function ReservationView({
               />
             );
           })
+      ) : (
+        <p>예약이 없습니다.</p>
       )}
     </div>
   );
