@@ -18,7 +18,7 @@ export default function CalendarNavButton({
           isPrevDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-gray-200"
         } hover:text-primary`}
       >
-        <MdArrowLeft size={24} className="pb-2 md:pb-0" />
+        <MdArrowLeft size={24} />
       </button>
       <span className="text-lg font-bold md:text-2xl">
         {currentYear}년{"  "}
@@ -34,7 +34,7 @@ export default function CalendarNavButton({
           isNextDisabled ? "cursor-not-allowed opacity-50" : "hover:bg-gray-200"
         } hover:text-primary`}
       >
-        <MdArrowRight size={24} className="pb-2 md:pb-0" />
+        <MdArrowRight size={24} />
       </button>
     </div>
   );
