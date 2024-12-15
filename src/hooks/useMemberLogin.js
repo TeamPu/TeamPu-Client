@@ -35,17 +35,20 @@ export const useMemberLogin = () => {
   };
 
   async function vertifyAdmin(data) {
-    const response = await axios.post(requests.postMemberLogin, data);
-    if (response.status === 401) {
-      alert("아이디와 비밀번호를 확인해주세요.");
-      loginDispatch({ type: "RESET" });
-    }
-    document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
-    const isAdmin = await fetchAdmin();
-    if (isAdmin) {
-      navigate("/admin");
-    } else {
-      navigate("/");
+    try {
+      const response = await axios.post(requests.postMemberLogin, data);
+      document.cookie = `token=${response.headers.authorization}; max-age=3600; path=/`;
+      const isAdmin = await fetchAdmin();
+      if (isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      if (error.status === 401) {
+        alert("아이디와 비밀번호를 확인해주세요.");
+        loginDispatch({ type: "RESET" });
+      }
     }
   }
 
